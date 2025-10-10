@@ -38,8 +38,8 @@ document.getElementById("version").innerHTML = gameVersion;
 
 //Create player, get points from localStorage if available
 let player;
-if (localStorage.getItem('SBpoints') !== null) {
-    player = new Player("PlayerName", parseInt(localStorage.getItem('SBpoints')));
+if (localStorage.getItem('SSpoints') !== null) {
+    player = new Player("PlayerName", parseInt(localStorage.getItem('SSpoints')));
 }
 else {
     player = new Player("PlayerName", 0);
@@ -67,8 +67,8 @@ let shopExpansionPriceElement = document.getElementById("shopExpansionPrice");
 //Create shop variables
     //Associates
 let shopAssociates = 0;
-if (localStorage.getItem('BBassociates') !== null) {
-    shopAssociates = parseInt(localStorage.getItem('BBassociates'));
+if (localStorage.getItem('SSassociates') !== null) {
+    shopAssociates = parseInt(localStorage.getItem('SSassociates'));
 }
 let shopAssociateModifier = 1;
 let shopAssociatePrice = 100;
@@ -78,8 +78,8 @@ if (shopAssociates > 0) {
 }
     //Estheticians
 let shopEstheticians = 0;
-if (localStorage.getItem('BBestheticians') !== null) {
-    shopEstheticians = parseInt(localStorage.getItem('BBestheticians'));
+if (localStorage.getItem('SSestheticians') !== null) {
+    shopEstheticians = parseInt(localStorage.getItem('SSestheticians'));
 }
 let shopEstheticianModifier = 10;
 let shopEstheticianPrice = 500;
@@ -89,8 +89,8 @@ if (shopEstheticians > 0) {
 }
     //Additional Expansions
 let shopExpansions = 0;
-if (localStorage.getItem('BBexpansions') !== null) {
-    shopExpansions = parseInt(localStorage.getItem('BBexpansions'));
+if (localStorage.getItem('SSexpansions') !== null) {
+    shopExpansions = parseInt(localStorage.getItem('SSexpansions'));
 }
 let shopExpansionModifier = 50;
 let shopExpansionPrice = 1000;
@@ -100,8 +100,8 @@ if (shopExpansions > 0) {
 }
     //Player Handling Upgrade
 let shopHandling = 0;
-if (localStorage.getItem('BBhandling') !== null) {
-    shopHandling = parseInt(localStorage.getItem('BBhandling'));
+if (localStorage.getItem('SShandling') !== null) {
+    shopHandling = parseInt(localStorage.getItem('SShandling'));
 }
 let shopHandlingModifier = 2;
 let shopHandlingPrice = 50;
@@ -146,6 +146,13 @@ function clickMainButton() {
     player.addPoints(pointsToAdd);
     //call updatePointsDisplay
     updatePointsDisplay();
+
+    //create and play seal audio sound
+    let audioElement = document.createElement("audio");
+    let audioSourceElement = document.createElement("source");
+    audioElement.appendChild(audioSourceElement);
+    audioSourceElement.src = "audio/sealbark1.mp3";
+    audioElement.play();
 }
 
 //update function that is called every second (this mostly handles automations and tick updates)
@@ -182,10 +189,10 @@ function updateHandlingUpgradeDisplay() {
 }
     //Automations
 function updateAssociatesDisplay() {
-    shopAssociateButton.innerHTML = "Elven Associates: 🐕 (" + shopAssociates + ")";
+    shopAssociateButton.innerHTML = "Associates: 🐕 (" + shopAssociates + ")";
 }
 function updateEstheticiansDisplay() {
-    shopEstheticianButton.innerHTML = "Goblin Estheticians: 🐈‍⬛ (" + shopEstheticians + ")";
+    shopEstheticianButton.innerHTML = "Estheticians: 🐈‍⬛ (" + shopEstheticians + ")";
 }
 function updateExpansionsDisplay() {
     shopExpansionButton.innerHTML = "Additional Expansions: 🏠 (" + shopExpansions + ")";
@@ -230,12 +237,12 @@ function updateInventoryDisplay() {
 //Save function (saves to local storage)
 function saveToLocalStorage() {
     //save automations
-    localStorage.setItem("SBpoints", player.getPoints());
-    localStorage.setItem("SBassociates", shopAssociates);
-    localStorage.setItem("BBestheticians", shopEstheticians);
-    localStorage.setItem("BBexpansions", shopExpansions);
+    localStorage.setItem("SSpoints", player.getPoints());
+    localStorage.setItem("SSassociates", shopAssociates);
+    localStorage.setItem("SSestheticians", shopEstheticians);
+    localStorage.setItem("SSexpansions", shopExpansions);
     //save player upgrades
-    localStorage.setItem("BBhandling", shopHandling);
+    localStorage.setItem("SShandling", shopHandling);
     console.log("Game Saved.");
 }
 
