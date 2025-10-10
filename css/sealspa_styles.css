@@ -13,7 +13,7 @@ body, header, nav, main, footer {
 /* General Styles */
 body {
     background-color: #084B83;
-    background-image: linear-gradient(-45deg, brown, grey);
+    background-image: linear-gradient(45deg, lightpink, blue);
     font-family: "Fira Sans Condensed", sans-serif;
     font-weight: 400;
     font-style: normal;

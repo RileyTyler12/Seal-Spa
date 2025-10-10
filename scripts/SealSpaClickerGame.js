@@ -28,7 +28,7 @@ class Player {
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.1 Prototype";
+let gameVersion = "0.2 Prototype";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
@@ -181,7 +181,7 @@ function updatePointsDisplay() {
     pointsElement.innerHTML = player.getPoints();
     //also update page title to display this.
     let titleElement = document.getElementById("pageTitle");
-    titleElement.innerHTML = "Seal Spa " + player.getPoints() + "💲";
+    titleElement.innerHTML = "🦭Seal Spa | " + player.getPoints() + "💲";
 }
     //Player Upgrades
 function updateHandlingUpgradeDisplay() {
