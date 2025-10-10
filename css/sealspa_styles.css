@@ -1,0 +1,363 @@
+/* 
+CSS Styles for Riley Tyler (Me) Portfolio Site
+coolors.co URL for color palette: https://coolors.co/084b83-42bfdd-bbe6e4-f0f6f6-94849b
+*/
+
+/*	General CSS Reset	*/
+body, header, nav, main, footer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* General Styles */
+body {
+    background-color: #084B83;
+    background-image: linear-gradient(-45deg, brown, grey);
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-wrap: pretty;
+    word-wrap: anywhere;
+    color: #F0F6F6;
+}
+
+#GridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: flex-start;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+    border: 4px solid rgba(66, 191, 221, 0.5);
+    border-radius: 4px;
+}
+
+input {
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #084B83;
+    padding: 2%;
+    background-color: rgba(240, 246, 246, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.5s;
+}
+
+input:hover {
+    color: #F0F6F6;
+    background-color: rgba(66, 191, 221, 0.5);
+    font-size: 1.2em;
+    transition: 0.5s;
+}
+
+button {
+    position: relative;
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: 400;
+    font-size: 1.5em;
+    font-style: normal;
+    color: #084B83;
+    padding: 2%;
+    background-color: rgba(240, 246, 246, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.5s;
+}
+
+button:hover {
+    color: #F0F6F6;
+    background-color: rgba(66, 191, 221, 0.5);
+    font-size: 1.7em;
+    transition: 0.5s;
+}
+
+/* Header/Logo Styles */
+#HeaderLogo {
+    grid-column: 1;
+    text-align: center;
+    background: -webkit-linear-gradient(-45deg, #F0F6F6, #42BFDD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 2%;
+    color: #BBE6E4;
+}
+
+/* Navigation Bar Styles */
+.NavBar {
+    display: block;
+    grid-column: 2 / span 2;
+    padding: 2%;
+    margin-bottom: 2%;
+    word-wrap: normal;
+    text-align: center;
+}
+
+.NavBar nav {
+    background-color: rgba(144, 45, 65, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.NavBar nav a {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #084B83;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgba(240, 246, 246, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.5s;
+} 
+
+.NavBar nav a:hover {
+    color: #F0F6F6;
+    background-color: rgba(66, 191, 221, 0.5);
+    font-size: 1.2em;
+    transition: 0.5s;
+}
+    /* Hide menu button for desktop */
+#menuButton {
+    display: none;
+}
+
+/* Content Styles */
+main {
+    grid-column: 1 / span 3;
+    width: 95%;
+    text-align: center;
+    background-color: rgba(66, 191, 221, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 2%;
+    margin: auto;
+}
+
+#MainContent {
+    position: relative;
+}
+
+/* Main Panel Styles */
+.panel {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    background-color: rgba(187, 230, 228, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 4%;
+    margin: 2% 2% 2% 2%;
+    max-width: 100%;
+    color: #084B83;
+}
+
+    /* Set panel grid column span class (add to panel class attribute) */
+.columnSpan2 {
+    grid-column: span 2;
+}
+.columnSpan3 {
+    grid-column: span 3;
+}
+
+    /* custom styles for other panel elements */
+.panel iframe {
+    max-width: 100%;
+}
+
+.panel ul {
+    list-style: none;
+}
+
+.panel li {
+    display: inline-block;
+    background-image: linear-gradient(145deg, rgba(240, 246, 246, 0.4), rgba(144, 45, 65, 0.4));
+    color: #084B83;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 2%;
+    margin: 2% 2% 2% 2%;
+    transition: 1s;
+}
+
+.panel li:hover {
+    padding: 2.1%;
+    transition: 0.5s;
+}
+
+.panel a {
+    display: inline-block;
+    font-family: "Fira Sans Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    color: #084B83;
+    padding: 2%;
+    background-color: rgba(240, 246, 246, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.5s;
+}
+
+.panel a:hover {
+    color: #F0F6F6;
+    background-color: rgba(66, 191, 221, 0.5);
+    font-size: 1.2em;
+    transition: 0.5s;
+}
+
+/*Style rules for image viewer overlay*/
+#imageOverlay {
+    display: grid;
+    grid-template-columns: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(240, 246, 246, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin: auto;
+    transform: translate(-50%, -50%);
+}
+
+#imageOverlay img {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#imageOverlay input {
+    margin: auto;
+    padding: 2%;
+    position: fixed;
+    top: 94%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    color: #084B83;
+    background-color: rgba(187, 230, 228, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 1%;
+}
+
+
+/* Game specific styles */
+#mainButton {
+    font-size: 10em;
+}
+
+#mainButton:hover {
+    font-size: 10.2em;
+}
+
+/* Mobile (Non-Desktop) CSS Styling */
+@media screen and (max-width: 1000px), print {
+    
+    /* Content Styles */
+        /* make panels individually fill each row */
+    .panel, .columnSpan2, .columnSpan3 {
+        grid-column: 1 / span 3;
+    }
+    
+    /* Navigation Bar Menu Styles */
+        /* default menuContent (nav element) display to none, to be shown on menu button click. */
+    #menuContent {
+        display: none;
+        font-size: 1.5em;
+        word-wrap: normal;
+        width: 40%;
+        max-height: 25%;
+        position: fixed;
+        top: 14%;
+        left: 60%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+    }
+    
+    #menuContent nav {
+        position: relative;
+        border-radius: 8px;
+        padding: 8%;
+    }
+    
+    #menuContent nav a{
+        display: inline-block;
+        padding: 4%;
+    }
+
+    #menuButton {
+        display: block;
+        margin: auto;
+        font-size: 2em;
+        background-color: rgba(144, 45, 65, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        position: fixed;
+        top: 10%;
+        left: 90%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+    }
+    
+    #menuButton:hover {
+        color: #F0F6F6;
+        background-color: rgba(66, 191, 221, 0.5);
+        font-size: 2.2em;
+        transition: 0.5s;
+    }
+    
+} 
