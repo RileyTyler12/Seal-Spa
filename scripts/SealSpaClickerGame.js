@@ -178,7 +178,7 @@ function update() {
 
 //Element content update functions
 function updatePointsDisplay() {
-    pointsElement.innerHTML = player.getPoints();
+    pointsElement.innerHTML = player.getPoints() + "💲";
     //also update page title to display this.
     let titleElement = document.getElementById("pageTitle");
     titleElement.innerHTML = "🦭Seal Spa | " + player.getPoints() + "💲";
