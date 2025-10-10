@@ -295,6 +295,7 @@ footer {
 /* Game specific styles */
 #mainButton {
     font-size: 10em;
+    max-width: 512px;
 }
 
 #mainButton:hover {
