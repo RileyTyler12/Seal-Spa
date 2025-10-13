@@ -28,7 +28,7 @@ class Player {
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.2 Prototype";
+let gameVersion = "0.5 Prototype";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
@@ -64,7 +64,7 @@ let shopEstheticianPriceElement = document.getElementById("shopEstheticianPrice"
 let shopExpansionButton = document.getElementById("shopExpansionButton");
 let shopExpansionPriceElement = document.getElementById("shopExpansionPrice");
 
-//Create shop variables
+//Create and set up shop variables
     //Associates
 let shopAssociates = 0;
 if (localStorage.getItem('SSassociates') !== null) {
@@ -124,6 +124,21 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
     purchaseItem("handling");
 });
 
+//Create and setup seal character shop options/variables
+let sealOptions = ["Default", "Brutus Sealman", "Gwen Sealster"];
+let sealImages = ["images/sealart1.jpg", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
+let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
+let sealPrices = [0, 100, 200]; // associative array to sealOptions
+let unlockedSeals = [true, false, false]; // associative array to sealOptions
+if (localStorage.getItem('SSunlockedSeals') !== null) {
+    unlockedSeals = JSON.parse(localStorage.getItem('SSunlockedSeals'));
+}
+let currentSealIndex = 0;
+if (localStorage.getItem('SScurrentSeal') !== null) {
+    currentSealIndex = parseInt(localStorage.getItem('SScurrentSeal'))
+}
+document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
+
 //now call display functions to initalize elements
 updatePointsDisplay();
 updateAssociatesDisplay();
@@ -131,6 +146,7 @@ updateEstheticiansDisplay();
 updateExpansionsDisplay();
 updateHandlingUpgradeDisplay();
 updateInventoryDisplay();
+updateSealCharactersDisplay();
 
 //create interval to update every second
 window.setInterval(update, 1000);
@@ -148,10 +164,15 @@ function clickMainButton() {
     updatePointsDisplay();
 
     //create and play seal audio sound
+    if (document.getElementById("sealAudio")) { // remove old audio if valid just in case
+        document.getElementById("sealAudio").remove();
+        console.log("removed oldAudio");
+    }
     let audioElement = document.createElement("audio");
+    audioElement.id = "sealAudio";
     let audioSourceElement = document.createElement("source");
+    audioSourceElement.src = sealSounds[currentSealIndex];
     audioElement.appendChild(audioSourceElement);
-    audioSourceElement.src = "audio/sealbark1.mp3";
     audioElement.play();
 }
 
@@ -197,7 +218,7 @@ function updateEstheticiansDisplay() {
 function updateExpansionsDisplay() {
     shopExpansionButton.innerHTML = "Additional Expansions: 🏠 (" + shopExpansions + ")";
 }
-//Prices
+    //Prices
 function updateAssociatesPriceDisplay() {
     shopAssociatePriceElement.innerHTML = "Cost: " + shopAssociatePrice + "💲 | +" + (shopAssociates * shopAssociateModifier) + " bucks per second";
 }
@@ -233,6 +254,33 @@ function updateInventoryDisplay() {
     }
     inventoryElement.innerHTML = inventoryHTML;
 }
+    //Seal Character Options Display
+    function updateSealCharactersDisplay() {
+        let sealShopContainer = document.getElementById("sealShopContainer");
+        sealShopContainer.replaceChildren(); //clear shop elements
+        //Initialize Seal Character Shop Buttons
+        for (let i = 0; i < sealOptions.length; i++) {
+            let sealButton = document.createElement("button");
+            let sealName = sealOptions[i];
+            let sealImage = document.createElement("img");
+            sealImage.src = sealImages[i];
+            let sealPrice = document.createElement("p");
+            sealPrice.textContent = sealPrices[i] + " 💲";
+            if (unlockedSeals[i] === true) {
+                sealPrice.textContent = "Unlocked";
+            }
+            sealButton.className = "sealSelectionButton";
+            sealButton.id = "seal" + i;
+            sealButton.textContent = sealName;
+            sealButton.appendChild(sealImage);
+            sealButton.appendChild(sealPrice);
+            sealButton.addEventListener("click", (event) => {
+                const element = event.currentTarget;
+                unlockSeal(element);
+            });
+            sealShopContainer.appendChild(sealButton);
+        }
+    }
 
 //Save function (saves to local storage)
 function saveToLocalStorage() {
@@ -243,6 +291,9 @@ function saveToLocalStorage() {
     localStorage.setItem("SSexpansions", shopExpansions);
     //save player upgrades
     localStorage.setItem("SShandling", shopHandling);
+    //save current seal and seal unlocks
+    localStorage.setItem("SSunlockedSeals", JSON.stringify(unlockedSeals));
+    localStorage.setItem("SScurrentSeal", currentSealIndex);
     console.log("Game Saved.");
 }
 
@@ -318,4 +369,31 @@ function purchaseItem(item) {
         default:
             break;
     }
+}
+
+// Unlock/Purchase Seal Function
+function unlockSeal(element) {
+    let elementID = element.id;
+    let sealIndex = elementID.replace("seal", "");
+    // Check if seal is unlocked, if not attempt to purchase
+    if (unlockedSeals[sealIndex] === true) {
+        currentSealIndex = sealIndex;
+    }
+    else {
+        if (player.points >= sealPrices[sealIndex]) {
+            player.removePoints(sealPrices[sealIndex]);
+            updatePointsDisplay();
+            //update unlockedSeals
+            unlockedSeals[sealIndex] = true;
+            //set CurrentSealIndex
+            currentSealIndex = sealIndex;
+            //update display (such as setting price to unlocked)
+            updateSealCharactersDisplay();
+            //save and finish
+            saveToLocalStorage();
+            console.log("Seal Unlocked.");
+        }
+    }
+    // update main button seal selected seal image
+    document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
 }

@@ -302,6 +302,13 @@ footer {
     font-size: 10.2em;
 }
 
+.sealSelectionButton {
+    display: inline-block;
+    word-wrap: normal;
+    max-width: 128px;
+    margin: 1%;
+}
+
 /* Mobile (Non-Desktop) CSS Styling */
 @media screen and (max-width: 1000px), print {
     
@@ -360,5 +367,10 @@ footer {
         font-size: 2.2em;
         transition: 0.5s;
     }
-    
+
+    /* Game Specific */
+    .sealSelectionButton {
+        max-width: 50%;
+        margin: 1%;
+    }
 } 
