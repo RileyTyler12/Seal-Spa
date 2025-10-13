@@ -171,6 +171,7 @@ function clickMainButton() {
     }
     let audioElement = document.createElement("audio");
     audioElement.id = "sealAudio";
+    audioElement.volume = 0.2;
     let audioSourceElement = document.createElement("source");
     audioSourceElement.src = sealSounds[currentSealIndex];
     audioElement.appendChild(audioSourceElement);
