@@ -137,6 +137,7 @@ let currentSealIndex = 0;
 if (localStorage.getItem('SScurrentSeal') !== null) {
     currentSealIndex = parseInt(localStorage.getItem('SScurrentSeal'))
 }
+document.getElementById("sealName").textContent = sealOptions[currentSealIndex];
 document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
 
 //now call display functions to initalize elements
@@ -276,7 +277,7 @@ function updateInventoryDisplay() {
             sealButton.appendChild(sealPrice);
             sealButton.addEventListener("click", (event) => {
                 const element = event.currentTarget;
-                unlockSeal(element);
+                selectSeal(element);
             });
             sealShopContainer.appendChild(sealButton);
         }
@@ -371,8 +372,8 @@ function purchaseItem(item) {
     }
 }
 
-// Unlock/Purchase Seal Function
-function unlockSeal(element) {
+// Unlock/Purchase/Selecte Seal Function
+function selectSeal(element) {
     let elementID = element.id;
     let sealIndex = elementID.replace("seal", "");
     // Check if seal is unlocked, if not attempt to purchase
@@ -394,6 +395,7 @@ function unlockSeal(element) {
             console.log("Seal Unlocked.");
         }
     }
-    // update main button seal selected seal image
+    // update main button seal selected seal name and image
+    document.getElementById("sealName").textContent = sealOptions[currentSealIndex];
     document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
 }
