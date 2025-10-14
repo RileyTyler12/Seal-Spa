@@ -407,7 +407,7 @@ function selectSeal(element) {
         }
     }
     // update main button seal selected seal name and image
-    sealNameElement.getElementById("sealName").textContent = sealOptions[currentSealIndex];
+    sealNameElement.textContent = sealOptions[currentSealIndex];
     sealButtonImageElement.src = sealImages[currentSealIndex];
 }
 
