@@ -295,6 +295,12 @@ footer {
 /* Game specific styles */
 #mainButton {
     font-size: 2em;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    box-shadow: unset;
+    backdrop-filter: unset;
+    -webkit-backdrop-filter: unset;
     max-width: 512px;
     touch-action: none;
 }
