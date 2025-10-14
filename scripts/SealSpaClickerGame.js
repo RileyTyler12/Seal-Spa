@@ -28,7 +28,7 @@ class Player {
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.6 Prototype";
+let gameVersion = "0.6.0 Prototype";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
@@ -125,11 +125,11 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 });
 
 //Create and setup seal character shop options/variables
-let sealOptions = ["Baby Ronan", "Brutus Sealman", "Gwen Sealster"];
-let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
-let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
+let sealOptions = ["Baby Ronan", "Miss Bella", "Brutus Sealman"];
+let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg"]; // associative array to sealOptions
+let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg"]; // associative array to sealOptions
 let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
-let sealPrices = [0, 100, 500]; // associative array to sealOptions
+let sealPrices = [0, 1000, 2000]; // associative array to sealOptions
 let unlockedSeals = [true, false, false]; // associative array to sealOptions
 let sealAltImageActive = false;
 if (localStorage.getItem('SSunlockedSeals') !== null) {
