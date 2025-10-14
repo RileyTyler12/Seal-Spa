@@ -128,7 +128,7 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 let sealOptions = ["Default", "Brutus Sealman", "Gwen Sealster"];
 let sealImages = ["images/sealart1.jpg", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
 let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
-let sealPrices = [0, 100, 200]; // associative array to sealOptions
+let sealPrices = [0, 100, 500]; // associative array to sealOptions
 let unlockedSeals = [true, false, false]; // associative array to sealOptions
 if (localStorage.getItem('SSunlockedSeals') !== null) {
     unlockedSeals = JSON.parse(localStorage.getItem('SSunlockedSeals'));
@@ -212,13 +212,13 @@ function updateHandlingUpgradeDisplay() {
 }
     //Automations
 function updateAssociatesDisplay() {
-    shopAssociateButton.innerHTML = "Associates: 🐕 (" + shopAssociates + ")";
+    shopAssociateButton.innerHTML = "Associates: 🐧 (" + shopAssociates + ")";
 }
 function updateEstheticiansDisplay() {
-    shopEstheticianButton.innerHTML = "Estheticians: 🐈‍⬛ (" + shopEstheticians + ")";
+    shopEstheticianButton.innerHTML = "Estheticians: 🐙 (" + shopEstheticians + ")";
 }
 function updateExpansionsDisplay() {
-    shopExpansionButton.innerHTML = "Additional Expansions: 🏠 (" + shopExpansions + ")";
+    shopExpansionButton.innerHTML = "Additional Expansions: 🛖 (" + shopExpansions + ")";
 }
     //Prices
 function updateAssociatesPriceDisplay() {
@@ -240,15 +240,15 @@ function updateInventoryDisplay() {
     if (shopAssociates !== 0 || shopEstheticians !== 0 || shopExpansions !== 0) {
         //add shopAssociates
         for (let i = 0; i < shopAssociates; i++) {
-            inventoryHTML += "🐕";
+            inventoryHTML += "🐧";
         }
         //add Estheticians
         for (let i = 0; i < shopEstheticians; i++) {
-            inventoryHTML += "🐈‍⬛";
+            inventoryHTML += "🐙";
         }
         //add Expansions
         for (let i = 0; i < shopExpansions; i++) {
-            inventoryHTML += "🏠";
+            inventoryHTML += "🛖";
         }
     }
     else {
