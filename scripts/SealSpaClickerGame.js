@@ -417,7 +417,7 @@ function activateClickedSealImage(bool) {
         sealButtonImageElement.src = sealAltImages[currentSealIndex];
         setTimeout(function(){
             activateClickedSealImage(false);
-        }, 1000);
+        }, 2000);
     }
     else {
         sealButtonImageElement.src = sealImages[currentSealIndex];
