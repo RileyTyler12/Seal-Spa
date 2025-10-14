@@ -125,7 +125,7 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 });
 
 //Create and setup seal character shop options/variables
-let sealOptions = ["Baby Sealster", "Brutus Sealman", "Gwen Sealster"];
+let sealOptions = ["Baby Ronan", "Brutus Sealman", "Gwen Sealster"];
 let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
 let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
 let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
