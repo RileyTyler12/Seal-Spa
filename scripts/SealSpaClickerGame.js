@@ -28,7 +28,7 @@ class Player {
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.5 Prototype";
+let gameVersion = "0.6 Prototype";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
@@ -125,11 +125,13 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 });
 
 //Create and setup seal character shop options/variables
-let sealOptions = ["Default", "Brutus Sealman", "Gwen Sealster"];
-let sealImages = ["images/sealart1.jpg", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
+let sealOptions = ["Baby Sealster", "Brutus Sealman", "Gwen Sealster"];
+let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
+let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder1.jpg", "images/placeholder/seal-placeholder2.jpg"]; // associative array to sealOptions
 let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
 let sealPrices = [0, 100, 500]; // associative array to sealOptions
 let unlockedSeals = [true, false, false]; // associative array to sealOptions
+let sealAltImageActive = false;
 if (localStorage.getItem('SSunlockedSeals') !== null) {
     unlockedSeals = JSON.parse(localStorage.getItem('SSunlockedSeals'));
 }
@@ -137,8 +139,10 @@ let currentSealIndex = 0;
 if (localStorage.getItem('SScurrentSeal') !== null) {
     currentSealIndex = parseInt(localStorage.getItem('SScurrentSeal'))
 }
-document.getElementById("sealName").textContent = sealOptions[currentSealIndex];
-document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
+let sealNameElement = document.getElementById("sealName");
+let sealButtonImageElement = document.getElementById("sealButtonImage")
+sealNameElement.textContent = sealOptions[currentSealIndex];
+sealButtonImageElement.src = sealImages[currentSealIndex];
 
 //now call display functions to initalize elements
 updatePointsDisplay();
@@ -163,6 +167,12 @@ function clickMainButton() {
     player.addPoints(pointsToAdd);
     //call updatePointsDisplay
     updatePointsDisplay();
+
+    //call activateClickedSealImage
+    if (sealAltImageActive === false) {
+        activateClickedSealImage(true);
+        sealAltImageActive = true;
+    }
 
     //create and play seal audio sound
     if (document.getElementById("sealAudio")) { // remove old audio if valid just in case
@@ -397,6 +407,20 @@ function selectSeal(element) {
         }
     }
     // update main button seal selected seal name and image
-    document.getElementById("sealName").textContent = sealOptions[currentSealIndex];
-    document.getElementById("sealButtonImage").src = sealImages[currentSealIndex];
+    sealNameElement.getElementById("sealName").textContent = sealOptions[currentSealIndex];
+    sealButtonImageElement.src = sealImages[currentSealIndex];
+}
+
+//Activate Clicked Seal Image function
+function activateClickedSealImage(bool) {
+    if (bool === true) {
+        sealButtonImageElement.src = sealAltImages[currentSealIndex];
+        setTimeout(function(){
+            activateClickedSealImage(false);
+        }, 1000);
+    }
+    else {
+        sealButtonImageElement.src = sealImages[currentSealIndex];
+        sealAltImageActive = false;
+    }
 }
