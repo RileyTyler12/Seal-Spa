@@ -33,7 +33,7 @@ function bounceAnim(element, extent, speed) {
         else {
             if (pos >= extent || reset === true){
                 pos -= speed;
-                element.style.top = pos + 'px';
+                element.style.top = pos + 'em';
                 if (!reset) {
                     reset = true;
                 }
@@ -41,7 +41,33 @@ function bounceAnim(element, extent, speed) {
             }
             else {
                 pos += speed;
-                element.style.top = pos + 'px';
+                element.style.top = pos + 'em';
+                requestAnimationFrame(timerFrame);
+            }
+        }
+    }
+}
+
+function bounceAnim2(element, extent, speed) {
+    let pos = 0;
+    let reset = false;
+    requestAnimationFrame(timerFrame);
+    function timerFrame() {
+        if (pos >= 1) {
+            element.style.top = '0px';
+        } 
+        else {
+            if (-(pos) >= extent || reset === true){
+                pos += speed;
+                element.style.top = pos + 'em';
+                if (!reset) {
+                    reset = true;
+                }
+                requestAnimationFrame(timerFrame);
+            }
+            else {
+                pos -= speed;
+                element.style.top = pos + 'em';
                 requestAnimationFrame(timerFrame);
             }
         }
@@ -60,7 +86,7 @@ function bounceLeftAnim(element, extent, speed) {
         else {
             if (pos >= extent || reset === true){
                 pos -= speed;
-                element.style.left = pos + 'px';
+                element.style.left = pos + 'em';
                 if (!reset) {
                     reset = true;
                 }
@@ -68,7 +94,7 @@ function bounceLeftAnim(element, extent, speed) {
             }
             else {
                 pos += speed;
-                element.style.left = pos + 'px';
+                element.style.left = pos + 'em';
                 requestAnimationFrame(timerFrame);
             }
         }

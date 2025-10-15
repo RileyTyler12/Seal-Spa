@@ -283,6 +283,10 @@ function updateInventoryDisplay() {
             }
             sealButton.className = "sealSelectionButton";
             sealButton.id = "seal" + i;
+            sealButton.addEventListener("mouseover", (event) => {
+                const element = event.currentTarget;
+                bounceAnim(element, 1, 0.1);
+            });
             sealButton.textContent = sealName;
             sealButton.appendChild(sealImage);
             sealButton.appendChild(sealPrice);
