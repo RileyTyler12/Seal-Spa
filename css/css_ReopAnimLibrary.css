@@ -1,0 +1,57 @@
+/*
+A collection of css animations
+ */
+
+.bounce-anim {
+    animation: bounceAnim 0.5s ease-out forwards;
+}
+
+@keyframes bounceAnim {
+    0% {
+        top: 0em;
+    }
+    50% {
+        top: -1em;
+    }
+    100% {
+        top: 0em;
+    }
+}
+
+.bounce-right-anim {
+    animation: bounceRightAnim 0.5s ease-out forwards;
+}
+
+@keyframes bounceRightAnim {
+    0% {
+        left: 0em;
+    }
+    50% {
+        left: 1em;
+    }
+    100% {
+        left: 0em;
+    }
+}
+
+.left-right-anim {
+    animation: leftRightAnim 1s ease-out forwards;
+}
+
+@keyframes leftRightAnim {
+    0% {
+        left: 0em;
+    }
+    25% {
+        left: -3em;
+    }
+    50% {
+        left: 0em;
+    }
+    75% {
+        left: 3em;
+    }
+    100% {
+        left: 0em;
+    }
+}
