@@ -11,7 +11,7 @@ A collection of css animations
         top: 0em;
     }
     50% {
-        top: -1em;
+        top: -0.5em;
     }
     100% {
         top: 0em;
