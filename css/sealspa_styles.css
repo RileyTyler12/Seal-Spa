@@ -325,8 +325,7 @@ footer {
     display: inline-flex;
     flex-direction: column;
     word-wrap: normal;
-    max-width: 256px;
-    margin: 2%;
+    max-width: 100%;
 }
 
 #sealButtonImage {
@@ -347,7 +346,7 @@ footer {
     flex-direction: column;
     word-wrap: normal;
     max-width: min-content;
-    margin: 2%;
+    margin: 1%;
 }
 
 /* Mobile (Non-Desktop) CSS Styling */

@@ -413,6 +413,7 @@ function selectSeal(element) {
     // update main button seal selected seal name and image
     sealNameElement.textContent = sealOptions[currentSealIndex];
     sealButtonImageElement.src = sealImages[currentSealIndex];
+    sealButtonImageElement.scrollIntoView({behavior: 'smooth'});
 }
 
 //Activate Clicked Seal Image function
