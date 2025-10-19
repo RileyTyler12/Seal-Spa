@@ -349,6 +349,10 @@ footer {
     margin: 1%;
 }
 
+#title {
+    max-width: 50%;
+}
+
 /* Mobile (Non-Desktop) CSS Styling */
 @media screen and (max-width: 1000px), print {
     
