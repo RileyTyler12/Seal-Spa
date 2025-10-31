@@ -59,12 +59,14 @@ let shopHandlingUpgradePriceElement = document.getElementById("shopHandlingUpgra
         //automations
 let shopAssociateButton = document.getElementById("shopAssociateButton");
 let shopAssociatePriceElement = document.getElementById("shopAssociatePrice");
+let shopElectroTherapistButton = document.getElementById("shopElectroTherapistButton");
+let shopElectroTherapistPriceElement = document.getElementById("shopElectroTherapistPrice");
 let shopEstheticianButton = document.getElementById("shopEstheticianButton");
 let shopEstheticianPriceElement = document.getElementById("shopEstheticianPrice");
 let shopExpansionButton = document.getElementById("shopExpansionButton");
 let shopExpansionPriceElement = document.getElementById("shopExpansionPrice");
 
-//Create and set up shop variables
+//Create and set up/initialize shop variables
     //Associates
 let shopAssociates = 0;
 if (localStorage.getItem('SSassociates') !== null) {
@@ -75,6 +77,17 @@ let shopAssociatePrice = 100;
 if (shopAssociates > 0) {
     shopAssociatePrice += shopAssociates * 25;
     updateAssociatesPriceDisplay();
+}
+    //Electro Therapists
+let shopElectroTherapists = 0;
+if (localStorage.getItem('SSelectrotherapists') !== null) {
+    shopElectroTherapists = parseInt(localStorage.getItem('SSelectrotherapists'));
+}
+let shopElectroTherapistModifier = 5;
+let shopElectroTherapistPrice = 350;
+if (shopElectroTherapists > 0) {
+    shopElectroTherapistPrice += shopElectroTherapists * 50;
+    updateElectroTherapistsPriceDisplay();
 }
     //Estheticians
 let shopEstheticians = 0;
@@ -114,6 +127,9 @@ if (shopHandling > 0) {
 shopAssociateButton.addEventListener("click", function() {
     purchaseItem("Associate");
 });
+shopElectroTherapistButton.addEventListener("click", function() {
+    purchaseItem("Electro Therapist");
+});
 shopEstheticianButton.addEventListener("click", function() {
     purchaseItem("Esthetician");
 });
@@ -147,6 +163,7 @@ sealButtonImageElement.src = sealImages[currentSealIndex];
 //now call display functions to initalize elements
 updatePointsDisplay();
 updateAssociatesDisplay();
+updateElectroTherapistsDisplay();
 updateEstheticiansDisplay();
 updateExpansionsDisplay();
 updateHandlingUpgradeDisplay();
@@ -195,6 +212,11 @@ function update() {
         let pointsToAdd = shopAssociates * shopAssociateModifier;
         player.addPoints(pointsToAdd);
     }
+    //Electro Therapists
+    if (shopElectroTherapists > 0) {
+        let pointsToAdd = shopElectroTherapists * shopElectroTherapistModifier;
+        player.addPoints(pointsToAdd);
+    }
     //Estheticians
     if (shopEstheticians > 0) {
         let pointsToAdd = shopEstheticians * shopEstheticianModifier;
@@ -224,6 +246,9 @@ function updateHandlingUpgradeDisplay() {
 function updateAssociatesDisplay() {
     shopAssociateButton.innerHTML = "Associates: 🐧 (" + shopAssociates + ")";
 }
+function updateElectroTherapistsDisplay() {
+    shopElectroTherapistButton.innerHTML = "Electro Therapists: 🪼 (" + shopElectroTherapists + ")";
+}
 function updateEstheticiansDisplay() {
     shopEstheticianButton.innerHTML = "Estheticians: 🐙 (" + shopEstheticians + ")";
 }
@@ -233,6 +258,9 @@ function updateExpansionsDisplay() {
     //Prices
 function updateAssociatesPriceDisplay() {
     shopAssociatePriceElement.innerHTML = "Cost: " + shopAssociatePrice + "💲 | +" + (shopAssociates * shopAssociateModifier) + " bucks per second";
+}
+function updateElectroTherapistsPriceDisplay() {
+    shopElectroTherapistPriceElement.innerHTML = "Cost: " + shopElectroTherapistPrice + "💲 | +" + (shopElectroTherapists * shopElectroTherapistModifier) + " bucks per second";
 }
 function updateEstheticiansPriceDisplay() {
     shopEstheticianPriceElement.innerHTML = "Cost: " + shopEstheticianPrice + "💲 | +" + (shopEstheticians * shopEstheticianModifier) + " bucks per second";
@@ -247,10 +275,14 @@ function updateHandlingPriceDisplay() {
 function updateInventoryDisplay() {
     let inventoryElement = document.getElementById("inventory");
     let inventoryHTML = "";
-    if (shopAssociates !== 0 || shopEstheticians !== 0 || shopExpansions !== 0) {
+    if (shopAssociates !== 0 || shopElectroTherapists !== 0 || shopEstheticians !== 0 || shopExpansions !== 0) {
         //add shopAssociates
         for (let i = 0; i < shopAssociates; i++) {
             inventoryHTML += "🐧";
+        }
+        //add Electro Therapists
+        for (let i = 0; i < shopElectroTherapists; i++) {
+            inventoryHTML += "🪼";
         }
         //add Estheticians
         for (let i = 0; i < shopEstheticians; i++) {
@@ -303,6 +335,7 @@ function saveToLocalStorage() {
     //save automations
     localStorage.setItem("SSpoints", player.getPoints());
     localStorage.setItem("SSassociates", shopAssociates);
+    localStorage.setItem("SSelectrotherapists", shopElectroTherapists);
     localStorage.setItem("SSestheticians", shopEstheticians);
     localStorage.setItem("SSexpansions", shopExpansions);
     //save player upgrades
@@ -348,6 +381,22 @@ function purchaseItem(item) {
                 //save and finish
                 saveToLocalStorage();
                 console.log("Purchased Associate.");
+            }
+            break;
+        case "Electro Therapist":
+            if (player.points >= shopElectroTherapistPrice){
+                shopElectroTherapists++;
+                player.removePoints(shopElectroTherapistPrice);
+                updateElectroTherapistsDisplay();
+                updatePointsDisplay();
+                //refresh inventory display
+                updateInventoryDisplay();
+                //update price too
+                shopElectroTherapistPrice = 350 + (shopElectroTherapists * 50);
+                updateElectroTherapistsPriceDisplay();
+                //save and finish
+                saveToLocalStorage();
+                console.log("Purchased Electro Therapist.");
             }
             break;
         case "Esthetician":
