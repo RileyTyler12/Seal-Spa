@@ -183,12 +183,12 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 });
 
 //Create and setup seal character shop options/variables
-let sealOptions = ["Baby Ronan", "Miss Bella", "Brutus Sealman"];
-let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg"]; // associative array to sealOptions
-let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg"]; // associative array to sealOptions
-let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
-let sealPrices = [0, 1000, 2000]; // associative array to sealOptions
-let unlockedSeals = [true, false, false]; // associative array to sealOptions
+let sealOptions = ["Baby Ronan", "Miss Bella", "Brutus Sealman", "Ponsuke"];
+let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg", "https://i.redd.it/ponsuke-has-passed-away-v0-7x77m8s8twxa1.jpg?width=1170&format=pjpg&auto=webp&s=ebb69fbca4d13272aa2ba744ae81ea3caa956d90"]; // associative array to sealOptions
+let sealAltImages = ["images/Spa_Seal1_Alt.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg", "https://i.redd.it/ponsuke-has-passed-away-v0-74e359s8twxa1.jpg?width=1170&format=pjpg&auto=webp&s=ca2b48bd706480fc4018a6c00515ba06b09a4885"]; // associative array to sealOptions
+let sealSounds = ["audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3", "audio/sealbark1.mp3"]; // associative array to sealOptions
+let sealPrices = [0, 1000, 2000, 100]; // associative array to sealOptions
+let unlockedSeals = [true, false, false, false]; // associative array to sealOptions
 let sealAltImageActive = false;
 if (localStorage.getItem('SSunlockedSeals') !== null) {
     unlockedSeals = JSON.parse(localStorage.getItem('SSunlockedSeals'));

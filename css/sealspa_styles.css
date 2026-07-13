@@ -200,7 +200,7 @@ main {
 }
 
 .panel p {
-    color: var(--text-secondary);
+    color: var(--bg-primary);
     margin-bottom: 1rem;
 }
 
@@ -305,7 +305,7 @@ h2 {
    ============================================ */
 
 p {
-    color: var(--text-secondary);
+    color: var(--bg-primary);
     font-size: 1rem;
 }
 
@@ -315,7 +315,7 @@ p {
 #shopEstheticianPrice,
 #shopExpansionPrice {
     margin-top: 0.5rem;
-    color: var(--accent-color);
+    color: var(--text-secondary);
     font-weight: bold;
 }
 
