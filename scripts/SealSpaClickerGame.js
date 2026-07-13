@@ -22,11 +22,11 @@ function toggleTheme() {
     //Update button text based on current theme
     var toggleBtn = document.getElementById("themeToggleBtn");
     if (newTheme === "ocean") {
-        toggleBtn.textContent = "\u{1F4C5} Ocean / \u{2600} Sunset";
+        toggleBtn.textContent = "🌊 Ocean";
     } else if (newTheme === "sunset") {
-        toggleBtn.textContent = "\u{2600} Sunset / \u{1F319} Midnight";
+        toggleBtn.textContent = "🌅 Sunset";
     } else {
-        toggleBtn.textContent = "\u{1F319} Midnight / \u{1F4C5} Ocean";
+        toggleBtn.textContent = "🌑 Midnight";
     }
 }
 
