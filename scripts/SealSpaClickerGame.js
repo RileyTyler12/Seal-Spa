@@ -36,9 +36,9 @@ window.addEventListener("DOMContentLoaded", function() {
     if (savedTheme) {
         document.documentElement.setAttribute("data-theme", savedTheme);
         var toggleBtn = document.getElementById("themeToggleBtn");
-        if (newTheme === "ocean") {
+        if (savedTheme === "ocean") {
             toggleBtn.textContent = "🌊 Ocean";
-        } else if (newTheme === "sunset") {
+        } else if (savedTheme === "sunset") {
             toggleBtn.textContent = "🌅 Sunset";
         } else {
             toggleBtn.textContent = "🌑 Midnight";
