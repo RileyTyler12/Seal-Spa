@@ -36,12 +36,12 @@ window.addEventListener("DOMContentLoaded", function() {
     if (savedTheme) {
         document.documentElement.setAttribute("data-theme", savedTheme);
         var toggleBtn = document.getElementById("themeToggleBtn");
-        if (savedTheme === "ocean") {
-            toggleBtn.textContent = "\u{1F4C5} Ocean / \u{2600} Sunset";
-        } else if (savedTheme === "sunset") {
-            toggleBtn.textContent = "\u{2600} Sunset / \u{1F319} Midnight";
+        if (newTheme === "ocean") {
+            toggleBtn.textContent = "🌊 Ocean";
+        } else if (newTheme === "sunset") {
+            toggleBtn.textContent = "🌅 Sunset";
         } else {
-            toggleBtn.textContent = "\u{1F319} Midnight / \u{1F4C5} Ocean";
+            toggleBtn.textContent = "🌑 Midnight";
         }
     }
 });
