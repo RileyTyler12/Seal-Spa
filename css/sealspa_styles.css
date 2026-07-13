@@ -1,163 +1,138 @@
 /* 
-CSS Styles for Riley Tyler (Me) Portfolio Site
-coolors.co URL for color palette: https://coolors.co/084b83-42bfdd-bbe6e4-f0f6f6-94849b
+CSS Styles for Seal Spa Clicker Game - Enhanced Glassmorphism & Multi-Theme Design
 */
 
-/*	General CSS Reset	*/
-body, header, nav, main, footer {
-    margin: 0;
-    padding: 0;
-    border: 0;
+/* ============================================
+   CSS Custom Properties (Theme Variables)
+   ============================================ */
+
+:root {
+    /* Ocean Blue Theme (Default) */
+    --bg-primary: #084B83;
+    --bg-gradient-start: #084B83;
+    --bg-gradient-end: #42BFDD;
+    --glass-bg: rgba(187, 230, 228, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-primary: #F0F6F6;
+    --text-secondary: #BBE6E4;
+    --accent-color: #42BFDD;
+    --card-bg: rgba(187, 230, 228, 0.5);
+    --button-bg: rgba(240, 246, 246, 0.5);
+    --button-hover-bg: rgba(66, 191, 221, 0.7);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --footer-bg: rgba(187, 230, 228, 0.5);
+    --input-bg: rgba(240, 246, 246, 0.5);
+    --input-hover-bg: rgba(66, 191, 221, 0.7);
+    --title-gradient-start: #F0F6F6;
+    --title-gradient-end: #42BFDD;
 }
 
-/* General Styles */
+[data-theme="sunset"] {
+    /* Sunset Orange Theme */
+    --bg-primary: #FF6B35;
+    --bg-gradient-start: #FF6B35;
+    --bg-gradient-end: #FFD93D;
+    --glass-bg: rgba(255, 107, 53, 0.4);
+    --glass-border: rgba(255, 217, 61, 0.3);
+    --text-primary: #FFF8E7;
+    --text-secondary: #FFD93D;
+    --accent-color: #FFD93D;
+    --card-bg: rgba(255, 107, 53, 0.4);
+    --button-bg: rgba(255, 217, 61, 0.6);
+    --button-hover-bg: rgba(255, 180, 100, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --footer-bg: rgba(255, 107, 53, 0.4);
+    --input-bg: rgba(255, 217, 61, 0.6);
+    --input-hover-bg: rgba(255, 180, 100, 0.8);
+    --title-gradient-start: #FFF8E7;
+    --title-gradient-end: #FFD93D;
+}
+
+[data-theme="midnight"] {
+    /* Midnight Purple Theme */
+    --bg-primary: #2C003E;
+    --bg-gradient-start: #2C003E;
+    --bg-gradient-end: #6B21A8;
+    --glass-bg: rgba(139, 92, 246, 0.5);
+    --glass-border: rgba(139, 92, 246, 0.3);
+    --text-primary: #E9D5FF;
+    --text-secondary: #A78BFA;
+    --accent-color: #A78BFA;
+    --card-bg: rgba(139, 92, 246, 0.4);
+    --button-bg: rgba(139, 92, 246, 0.5);
+    --button-hover-bg: rgba(167, 139, 250, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --footer-bg: rgba(139, 92, 246, 0.4);
+    --input-bg: rgba(139, 92, 246, 0.5);
+    --input-hover-bg: rgba(167, 139, 250, 0.8);
+    --title-gradient-start: #E9D5FF;
+    --title-gradient-end: #A78BFA;
+}
+
+/* ============================================
+   General CSS Reset & Base Styles
+   ============================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #084B83;
-    background-image: linear-gradient(45deg, lightpink, blue);
     font-family: "DynaPuff", system-ui;
     font-weight: 400;
     font-style: normal;
-    text-wrap: pretty;
-    word-wrap: anywhere;
-    color: #F0F6F6;
-}
-
-#GridWrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: flex-start;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 hr {
-    border: 4px solid rgba(66, 191, 221, 0.5);
-    border-radius: 4px;
+    border: 4px solid var(--bg-primary);
+    border-radius: 2px;
+    margin: 1.2rem;
 }
 
-input {
-    font-family: "DynaPuff", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: #084B83;
-    padding: 2%;
-    background-color: rgba(240, 246, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: 0.5s;
+/* ============================================
+   Glassmorphism Base Styles
+   ============================================ */
+
+.glass-effect {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-input:hover {
-    color: #F0F6F6;
-    background-color: rgba(66, 191, 221, 0.5);
-    font-size: 1.2em;
-    transition: 0.5s;
+/* ============================================
+   Grid Layout System
+   ============================================ */
+
+#GridWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-button {
-    position: relative;
-    font-family: "DynaPuff", system-ui;
-    font-weight: 400;
-    font-size: 1.5em;
-    font-style: normal;
-    color: #084B83;
-    padding: 2%;
-    background-color: rgba(240, 246, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: 0.5s;
-}
+/* ============================================
+   Main Content Area
+   ============================================ */
 
-button:hover {
-    color: #F0F6F6;
-    background-color: rgba(66, 191, 221, 0.5);
-    font-size: 1.7em;
-    transition: 0.5s;
-}
-
-/* Header/Logo Styles */
-#HeaderLogo {
-    grid-column: 1;
-    text-align: center;
-    background: -webkit-linear-gradient(-45deg, #F0F6F6, #42BFDD);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 2%;
-    color: #BBE6E4;
-}
-
-/* Navigation Bar Styles */
-.NavBar {
-    display: block;
-    grid-column: 2 / span 2;
-    padding: 2%;
-    margin-bottom: 2%;
-    word-wrap: normal;
-    text-align: center;
-}
-
-.NavBar nav {
-    background-color: rgba(144, 45, 65, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.NavBar nav a {
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    color: #084B83;
-    padding: 2%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: rgba(240, 246, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: 0.5s;
-} 
-
-.NavBar nav a:hover {
-    color: #F0F6F6;
-    background-color: rgba(66, 191, 221, 0.5);
-    font-size: 1.2em;
-    transition: 0.5s;
-}
-    /* Hide menu button for desktop */
-#menuButton {
-    display: none;
-}
-
-/* Content Styles */
 main {
-    grid-column: 1 / span 3;
+    grid-column: 1 / -1;
     width: 95%;
     text-align: center;
-    background-color: rgba(66, 191, 221, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    padding: 2%;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
     margin: auto;
 }
 
@@ -165,254 +140,350 @@ main {
     position: relative;
 }
 
-/* Main Panel Styles */
-.panel {
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    background-color: rgba(187, 230, 228, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    padding: 4%;
-    margin: 2% 2% 2% 2%;
-    max-width: 100%;
-    color: #084B83;
+#title {
+    max-width: 50%;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, var(--title-gradient-start), var(--title-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-    /* Set panel grid column span class (add to panel class attribute) */
-.columnSpan2 {
-    grid-column: span 2;
-}
-.columnSpan3 {
-    grid-column: span 3;
+/* ============================================
+   Theme Toggle Button
+   ============================================ */
+
+.theme-toggle-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
-    /* custom styles for other panel elements */
-.panel iframe {
-    max-width: 100%;
-}
-
-.panel ul {
-    list-style: none;
-}
-
-.panel li {
-    display: inline-block;
-    background-image: linear-gradient(145deg, rgba(240, 246, 246, 0.4), rgba(144, 45, 65, 0.4));
-    color: #084B83;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 2%;
-    margin: 2% 2% 2% 2%;
-    transition: 1s;
-}
-
-.panel li:hover {
-    padding: 2.1%;
-    transition: 0.5s;
-}
-
-.panel a {
-    display: inline-block;
+#themeToggleBtn {
+    padding: 0.75rem 2rem;
     font-family: "DynaPuff", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    text-decoration: none;
-    color: #084B83;
-    padding: 2%;
-    background-color: rgba(240, 246, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: 0.5s;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.panel a:hover {
-    color: #F0F6F6;
-    background-color: rgba(66, 191, 221, 0.5);
-    font-size: 1.2em;
-    transition: 0.5s;
+#themeToggleBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/*Style rules for image viewer overlay*/
-#imageOverlay {
-    display: grid;
-    grid-template-columns: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(240, 246, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    margin: auto;
-    transform: translate(-50%, -50%);
+/* ============================================
+   Panel Styles (Shop, Special Customers, etc.)
+   ============================================ */
+
+.panel {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
 }
 
-#imageOverlay img {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.panel:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-#imageOverlay input {
-    margin: auto;
-    padding: 2%;
-    position: fixed;
-    top: 94%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.panel h1 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
-/* Footer Styles */
-footer {
-    text-align: center;
-    color: #084B83;
-    background-color: rgba(187, 230, 228, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    padding: 1%;
+.panel p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
 }
 
-
-/* Game specific styles */
-#mainButton {
-    font-size: 2em;
-    background-color: unset;
-    border: unset;
-    border-radius: unset;
-    box-shadow: unset;
-    backdrop-filter: unset;
-    -webkit-backdrop-filter: unset;
-    max-width: 512px;
-    touch-action: manipulation;
-}
-
-#mainButton:hover {
-    font-size: 2.2em;
-}
+/* ============================================
+   Shop Container & Buttons
+   ============================================ */
 
 .shopContainer {
     display: flex;
-    flex: 1 1 auto;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: space-evenly;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .shopContainer div {
-    margin: 5%;
+    flex: 1 1 auto;
+    min-width: 200px;
 }
 
 .shopButton {
     display: inline-flex;
     flex-direction: column;
-    word-wrap: normal;
-    max-width: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    font-family: "DynaPuff", system-ui;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    background-color: var(--button-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shopButton:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.shopButton:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* ============================================
+   Main Seal Button
+   ============================================ */
+
+#buttonDiv {
+    text-align: center;
+}
+
+#mainButton {
+    font-size: 3rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 512px;
+    margin: auto;
+}
+
+#mainButton:hover {
+    transform: scale(1.05);
 }
 
 #sealButtonImage {
-    border: none;
-    box-shadow: none;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-#sealShopContainer {
-    display: flex;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: space-evenly;
+/* ============================================
+   Typography & Content
+   ============================================ */
+
+h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
 }
+
+#sealName {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+#points {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   Price Display & Shop Elements
+   ============================================ */
+
+p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+#shopHandlingUpgradePrice,
+#shopAssociatePrice,
+#shopElectroTherapistPrice,
+#shopEstheticianPrice,
+#shopExpansionPrice {
+    margin-top: 0.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* ============================================
+   Seal Selection Buttons
+   ============================================ */
 
 .sealSelectionButton {
     display: inline-flex;
     flex-direction: column;
-    word-wrap: normal;
-    max-width: min-content;
-    margin: 1%;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: var(--button-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-#title {
-    max-width: 50%;
+.sealSelectionButton:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-#title {
-    max-width: 50%;
+.sealSelectionButton img {
+    max-width: 80%;
+    margin-bottom: 0.5rem;
 }
 
-/* Mobile (Non-Desktop) CSS Styling */
+/* ============================================
+   Inventory Display
+   ============================================ */
+
+#inventory {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* ============================================
+   Footer Styles
+   ============================================ */
+
+footer {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-secondary);
+    background-color: var(--footer-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+#version {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ============================================
+   Responsive Design - Tablet & Mobile
+   ============================================ */
+
 @media screen and (max-width: 1000px), print {
-    
-    /* Content Styles */
-        /* make panels individually fill each row */
-    .panel, .columnSpan2, .columnSpan3 {
-        grid-column: 1 / span 3;
-    }
-    
-    /* Navigation Bar Menu Styles */
-        /* default menuContent (nav element) display to none, to be shown on menu button click. */
-    #menuContent {
-        display: none;
-        font-size: 1.5em;
-        word-wrap: normal;
-        width: 40%;
-        max-height: 25%;
-        position: fixed;
-        top: 14%;
-        left: 60%;
-        z-index: 1;
-        transform: translate(-50%, -50%);
-    }
-    
-    #menuContent nav {
-        position: relative;
-        border-radius: 8px;
-        padding: 8%;
-    }
-    
-    #menuContent nav a{
-        display: inline-block;
-        padding: 4%;
+    #GridWrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
     }
 
-    #menuButton {
-        display: block;
-        margin: auto;
-        font-size: 2em;
-        background-color: rgba(144, 45, 65, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        position: fixed;
-        top: 10%;
-        left: 90%;
-        z-index: 1;
-        transform: translate(-50%, -50%);
+    .panel, 
+    .columnSpan2, 
+    .columnSpan3 {
+        grid-column: 1 / -1;
     }
-    
-    #menuButton:hover {
-        color: #F0F6F6;
-        background-color: rgba(66, 191, 221, 0.5);
-        font-size: 2.2em;
-        transition: 0.5s;
+
+    #mainButton {
+        font-size: 2.5rem;
+        max-width: 400px;
     }
-} 
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .shopContainer div {
+        min-width: auto;
+        flex: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #GridWrapper {
+        padding: 1rem;
+    }
+
+    main {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .panel {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    #title {
+        font-size: 2rem;
+    }
+
+    #mainButton {
+        font-size: 2rem;
+        max-width: 300px;
+    }
+
+    .shopContainer div {
+        min-width: auto;
+    }
+
+    footer {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #GridWrapper {
+        padding: 0.5rem;
+    }
+
+    main {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .panel {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    #title {
+        font-size: 1.5rem;
+    }
+
+    #mainButton {
+        font-size: 1.8rem;
+        max-width: 250px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    .shopContainer div {
+        min-width: auto;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+
+    #themeToggleBtn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem;
+    }
+}

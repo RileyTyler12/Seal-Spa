@@ -2,7 +2,7 @@
 <!--
 Website written/designed by: Riley Tyler
 -->
-<html lang="en">
+<html lang="en" data-theme="ocean">
     <head>
         <title id="pageTitle">Seal Spa</title>
         <meta charset="UTF-8">
@@ -30,6 +30,10 @@ Website written/designed by: Riley Tyler
             </div>
             </main>
             
+            <div class="theme-toggle-container">
+                <button id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">&#x1F4C5; Ocean / &#x2600; Sunset</button>
+            </div>
+
             <div class="panel columnSpan3" id="buttonDiv">
                 <button id="mainButton" onmouseenter="leftRightAnim(this)" onclick="bounceAnim2(this, 10, 2)"><img id="sealButtonImage" src="images/sealart1.jpg"></button>
                 <p id="sealName"></p>

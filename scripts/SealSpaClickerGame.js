@@ -3,6 +3,48 @@
 Written by Riley Tyler
 */
 
+//Theme Switching Functionality
+function toggleTheme() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    var newTheme;
+    
+    if (currentTheme === "ocean") {
+        newTheme = "sunset";
+    } else if (currentTheme === "sunset") {
+        newTheme = "midnight";
+    } else {
+        newTheme = "ocean";
+    }
+    
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("SealSpaTheme", newTheme);
+    
+    //Update button text based on current theme
+    var toggleBtn = document.getElementById("themeToggleBtn");
+    if (newTheme === "ocean") {
+        toggleBtn.textContent = "\u{1F4C5} Ocean / \u{2600} Sunset";
+    } else if (newTheme === "sunset") {
+        toggleBtn.textContent = "\u{2600} Sunset / \u{1F319} Midnight";
+    } else {
+        toggleBtn.textContent = "\u{1F319} Midnight / \u{1F4C5} Ocean";
+    }
+}
+
+//Initialize theme from localStorage on page load
+window.addEventListener("DOMContentLoaded", function() {
+    var savedTheme = localStorage.getItem("SealSpaTheme");
+    if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        var toggleBtn = document.getElementById("themeToggleBtn");
+        if (savedTheme === "ocean") {
+            toggleBtn.textContent = "\u{1F4C5} Ocean / \u{2600} Sunset";
+        } else if (savedTheme === "sunset") {
+            toggleBtn.textContent = "\u{2600} Sunset / \u{1F319} Midnight";
+        } else {
+            toggleBtn.textContent = "\u{1F319} Midnight / \u{1F4C5} Ocean";
+        }
+    }
+});
 
 //Define Player Class
 class Player {
@@ -28,7 +70,7 @@ class Player {
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.6.5 Prototype";
+let gameVersion = "0.7.0";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
