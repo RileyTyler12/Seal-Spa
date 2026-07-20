@@ -509,3 +509,96 @@ footer {
         padding: 0.5rem 1.5rem;
     }
 }
+
+/* ============================================
+   Ocean Theme - Animated Floating Bubbles
+   ============================================ */
+
+/* Ocean Theme - Floating Bubbles (applied when theme is active) */
+.ocean-bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(232, 245, 233, 0.6), rgba(178, 223, 219, 0.3));
+    pointer-events: none;
+    z-index: -1;
+    will-change: transform;
+}
+
+.ocean-bubbles-container {
+    display: none;
+}
+
+.ocean-bubble:nth-child(1) {
+    width: 40px; height: 40px; bottom: -60px; left: 8%;
+    animation: floatUpAndSway1 5s linear infinite;
+    animation-delay: 0s;
+}
+
+.ocean-bubble:nth-child(2) {
+    width: 30px; height: 30px; bottom: -40px; left: 22%;
+    animation: floatUpAndSway2 6s linear infinite;
+    animation-delay: 1.5s;
+}
+
+.ocean-bubble:nth-child(3) {
+    width: 50px; height: 50px; bottom: -70px; left: 38%;
+    animation: floatUpAndSway3 4s linear infinite;
+    animation-delay: 2.5s;
+}
+
+.ocean-bubble:nth-child(4) {
+    width: 25px; height: 25px; bottom: -30px; left: 55%;
+    animation: floatUpAndSway4 7s linear infinite;
+    animation-delay: 0.8s;
+}
+
+.ocean-bubble:nth-child(5) {
+    width: 35px; height: 35px; bottom: -50px; left: 72%;
+    animation: floatUpAndSway5 5.5s linear infinite;
+    animation-delay: 1.2s;
+}
+
+.ocean-bubble:nth-child(6) {
+    width: 45px; height: 45px; bottom: -80px; left: 88%;
+    animation: floatUpAndSway6 4.5s linear infinite;
+    animation-delay: 3s;
+}
+
+@keyframes floatUpAndSway1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(30px); }
+    75% { transform: translateY(-75vh) translateX(-20px); }
+}
+
+@keyframes floatUpAndSway2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(-25px); }
+    75% { transform: translateY(-75vh) translateX(15px); }
+}
+
+@keyframes floatUpAndSway3 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(20px); }
+    75% { transform: translateY(-75vh) translateX(-30px); }
+}
+
+@keyframes floatUpAndSway4 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(-35px); }
+    75% { transform: translateY(-75vh) translateX(25px); }
+}
+
+@keyframes floatUpAndSway5 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(35px); }
+    75% { transform: translateY(-75vh) translateX(-15px); }
+}
+
+@keyframes floatUpAndSway6 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-25vh) translateX(-20px); }
+    75% { transform: translateY(-75vh) translateX(30px); }
+}
+
+/* Apply bubbles only when ocean theme is active */
+[data-theme="ocean"] body > .ocean-bubbles-container { display: block; }
