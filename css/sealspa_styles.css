@@ -566,38 +566,50 @@ footer {
 
 @keyframes floatUpAndSway1 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(30px); }
-    75% { transform: translateY(-75vh) translateX(-20px); }
+    25% { transform: translateY(-40vh) translateX(30px); }
+    50% { transform: translateY(-80vh) translateX(20px); }
+    75% { transform: translateY(-120vh) translateX(-15px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 @keyframes floatUpAndSway2 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(-25px); }
-    75% { transform: translateY(-75vh) translateX(15px); }
+    25% { transform: translateY(-40vh) translateX(-25px); }
+    50% { transform: translateY(-80vh) translateX(15px); }
+    75% { transform: translateY(-120vh) translateX(20px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 @keyframes floatUpAndSway3 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(20px); }
-    75% { transform: translateY(-75vh) translateX(-30px); }
+    25% { transform: translateY(-40vh) translateX(20px); }
+    50% { transform: translateY(-80vh) translateX(-30px); }
+    75% { transform: translateY(-120vh) translateX(25px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 @keyframes floatUpAndSway4 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(-35px); }
-    75% { transform: translateY(-75vh) translateX(25px); }
+    25% { transform: translateY(-40vh) translateX(-35px); }
+    50% { transform: translateY(-80vh) translateX(25px); }
+    75% { transform: translateY(-120vh) translateX(30px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 @keyframes floatUpAndSway5 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(35px); }
-    75% { transform: translateY(-75vh) translateX(-15px); }
+    25% { transform: translateY(-40vh) translateX(35px); }
+    50% { transform: translateY(-80vh) translateX(-15px); }
+    75% { transform: translateY(-120vh) translateX(35px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 @keyframes floatUpAndSway6 {
     0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-25vh) translateX(-20px); }
-    75% { transform: translateY(-75vh) translateX(30px); }
+    25% { transform: translateY(-40vh) translateX(-20px); }
+    50% { transform: translateY(-80vh) translateX(30px); }
+    75% { transform: translateY(-120vh) translateX(-25px); }
+    90%, 100% { transform: translateY(-140vh) translateX(0); }
 }
 
 /* Apply bubbles only when ocean theme is active */
