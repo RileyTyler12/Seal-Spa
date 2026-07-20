@@ -9,6 +9,8 @@ function toggleTheme() {
     var newTheme;
     
     if (currentTheme === "ocean") {
+        newTheme = "cute";
+    } else if (currentTheme === "cute") {
         newTheme = "sunset";
     } else if (currentTheme === "sunset") {
         newTheme = "midnight";
@@ -23,6 +25,8 @@ function toggleTheme() {
     var toggleBtn = document.getElementById("themeToggleBtn");
     if (newTheme === "ocean") {
         toggleBtn.textContent = "🌊 Ocean";
+    } else if (newTheme === "cute") {
+        toggleBtn.textContent = "🎀 Cute";
     } else if (newTheme === "sunset") {
         toggleBtn.textContent = "🌅 Sunset";
     } else {
@@ -38,6 +42,8 @@ window.addEventListener("DOMContentLoaded", function() {
         var toggleBtn = document.getElementById("themeToggleBtn");
         if (savedTheme === "ocean") {
             toggleBtn.textContent = "🌊 Ocean";
+        } else if (savedTheme === "cute") {
+            toggleBtn.textContent = "🎀 Cute";
         } else if (savedTheme === "sunset") {
             toggleBtn.textContent = "🌅 Sunset";
         } else {
