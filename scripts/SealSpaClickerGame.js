@@ -171,6 +171,53 @@ window.addEventListener("DOMContentLoaded", function() {
             toggleBtn.textContent = "🌑 Midnight";
         }
     }
+    
+    //Initialize active tab from localStorage
+    var savedTab = localStorage.getItem("SealSpaActiveTab");
+    if (savedTab) {
+        setActiveTab(savedTab);
+    }
+});
+
+//Tab switching function
+function setActiveTab(tabName) {
+    //Remove active class from all tabs and contents
+    var tabButtons = document.querySelectorAll(".tab-button");
+    var tabContents = document.querySelectorAll(".tab-content");
+    
+    tabButtons.forEach(function(button) {
+        button.classList.remove("active");
+    });
+    
+    tabContents.forEach(function(content) {
+        content.classList.remove("active");
+    });
+    
+    //Add active class to selected tab and content
+    var selectedButton = document.querySelector(".tab-button[data-tab='" + tabName + "']");
+    var selectedContent = document.getElementById(tabName + "Tab");
+    
+    if (selectedButton) {
+        selectedButton.classList.add("active");
+    }
+    
+    if (selectedContent) {
+        selectedContent.classList.add("active");
+    }
+    
+    //Save active tab to localStorage
+    localStorage.setItem("SealSpaActiveTab", tabName);
+}
+
+//Add event listeners for tab switching
+document.addEventListener("DOMContentLoaded", function() {
+    var tabButtons = document.querySelectorAll(".tab-button");
+    tabButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var tabName = this.getAttribute("data-tab");
+            setActiveTab(tabName);
+        });
+    });
 });
 
 //Define Player Class
