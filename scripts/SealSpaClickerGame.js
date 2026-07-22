@@ -3,6 +3,127 @@
 Written by Riley Tyler
 */
 
+//Random Events System Configuration
+let randomEvents = {
+    //Event types and their configuration
+    luckyCustomer: {
+        name: "🎁 Lucky Customer",
+        description: "A customer leaves a generous tip!",
+        probability: 0.006, //0.6% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.08 + 10);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    newTechnique: {
+        name: "💆✨ New Technique",
+        description: "You discover a new spa technique!",
+        probability: 0.0055, //0.55% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.07 + 8);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    associateSurprise: {
+        name: "🐧 Associate Surprise",
+        description: "An associate brings in extra tips!",
+        probability: 0.0045, //0.45% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.06 + 15);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    sealBirthdayParty: {
+        name: "🎂 Seal Birthday Party",
+        description: "A customer's birthday celebration!",
+        probability: 0.0055, //0.55% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.08 + 20);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    seafoodDelivery: {
+        name: "🍣 Seafood Delivery",
+        description: "Fresh supplies arrive with bonus payment!",
+        probability: 0.008, //0.8% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.1 + 18);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    spaLoyaltyProgram: {
+        name: "⭐ Spa Loyalty Program",
+        description: "Returning customers bring steady income!",
+        probability: 0.009, //0.9% chance per tick (common)
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.04 + 3);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    sealTrainingDay: {
+        name: "🎓 Seal Training Day",
+        description: "Associates improve skills for efficiency!",
+        probability: 0.004, //0.4% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.07 + 12);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    oceanStormWarning: {
+        name: "🌊 Ocean Storm Warning",
+        description: "Weather affects business operations!",
+        probability: 0.003, //0.3% chance per tick (penalty)
+        effect: function(player) {
+            let penalty = Math.floor(player.getPoints() * 0.02 - 3);
+            if (penalty > 0) {
+                player.removePoints(penalty);
+                return `-${penalty}💲`;
+            }
+            return "";
+        },
+    },
+    oceanBlessing: {
+        name: "🌊 Ocean Blessing",
+        description: "A calming wave grants bonus points!",
+        probability: 0.005, //0.5% chance per tick
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.1 + 25);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    grandOpening: {
+        name: "🎉 Grand Opening",
+        description: "Special event! Massive bonus!",
+        probability: 0.002, //0.2% chance per tick (rare)
+        effect: function(player) {
+            let bonus = Math.floor(player.getPoints() * 0.15 + 80);
+            player.addPoints(bonus);
+            return `+${bonus}💲`;
+        },
+    },
+    equipmentBreakdown: {
+        name: "⚠️ Equipment Breakdown",
+        description: "Something's not working right...",
+        probability: 0.004, //0.4% chance per tick (penalty)
+        effect: function(player) {
+            let penalty = Math.floor(player.getPoints() * 0.03 - 5);
+            if (penalty > 0) {
+                player.removePoints(penalty);
+                return `-${penalty}💲`;
+            }
+            return "";
+        },
+    }
+};
+
 //Theme Switching Functionality
 function toggleTheme() {
     var currentTheme = document.documentElement.getAttribute("data-theme");
@@ -188,6 +309,9 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
     purchaseItem("handling");
 });
 
+//Random Events System Variables
+let eventHistory = []; //track recent events for display
+
 //Create and setup seal character shop options/variables
 let sealOptions = ["Baby Ronan", "Miss Bella", "Brutus Sealman", "Ponsuke"];
 let sealImages = ["images/Spa_Seal1.png", "images/placeholder/seal-placeholder2.jpg", "images/placeholder/seal-placeholder1.jpg", "https://i.redd.it/ponsuke-has-passed-away-v0-7x77m8s8twxa1.jpg?width=1170&format=pjpg&auto=webp&s=ebb69fbca4d13272aa2ba744ae81ea3caa956d90"]; // associative array to sealOptions
@@ -275,9 +399,133 @@ function update() {
         let pointsToAdd = shopExpansions * shopExpansionModifier;
         player.addPoints(pointsToAdd);
     }
+
+    //Random Events System - Check for events each tick
+    checkRandomEvents();
+
     updatePointsDisplay();
     saveToLocalStorage();
 }
+
+//Random Events System - Main function to check and trigger events
+function checkRandomEvents() {
+    //Check each event type against its probability
+    let eventKeys = Object.keys(randomEvents);
+    
+    for (let i = 0; i < eventKeys.length; i++) {
+        let eventName = eventKeys[i];
+        let eventConfig = randomEvents[eventName];
+        
+        //Generate random number between 0 and 1
+        let randomValue = Math.random();
+        
+        //Check if probability threshold is met
+        if (randomValue < eventConfig.probability) {
+            //Trigger the event
+            triggerEvent(eventName);
+        }
+    }
+}
+
+//Function to handle individual event triggers
+function triggerEvent(eventName) {
+    let eventConfig = randomEvents[eventName];
+    
+    //Get the event effect result
+    let effectResult = eventConfig.effect(player);
+    
+    //Log the event
+    console.log(`Random Event Triggered: ${eventConfig.name} - ${eventConfig.description}`);
+    
+    //Add to event history for display
+    addToEventHistory(eventName, eventConfig, effectResult);
+    
+    //Update points display to show the event bonus
+    updatePointsDisplay();
+    
+    //Save event history to localStorage (optional)
+    saveEventHistory();
+    
+    //Show the floating notification in the DOM
+    showEventNotification(eventName, eventConfig, effectResult);
+}
+
+//Function to add event to history and create floating notification
+function addToEventHistory(eventName, eventConfig, effectResult) {
+    let timestamp = Date.now();
+    eventHistory.push({
+        name: eventConfig.name,
+        description: eventConfig.description,
+        effect: effectResult,
+        timestamp: timestamp
+    });
+    
+    //Limit history to last 10 events
+    if (eventHistory.length > 10) {
+        eventHistory.shift();
+    }
+}
+
+//Function to create and display a floating event notification in the DOM
+function showEventNotification(eventName, eventConfig, effectResult) {
+    let container = document.getElementById("eventNotificationContainer");
+    
+    //Determine notification type based on event
+    let notificationType = "positive";
+    if (eventName === "equipmentBreakdown" || eventName === "oceanStormWarning") {
+        notificationType = "negative";
+    } else if (eventName === "oceanBlessing" || eventName === "grandOpening") {
+        notificationType = "neutral";
+    }
+    
+    //Create notification element
+    let notification = document.createElement("div");
+    notification.className = `eventNotification ${notificationType}`;
+    
+    //Add event icon and text
+    let iconSpan = document.createElement("span");
+    iconSpan.className = "eventIcon";
+    iconSpan.textContent = eventConfig.name.charAt(0); //Get the emoji from the name
+    
+    let textSpan = document.createElement("div");
+    textSpan.className = "eventText";
+    textSpan.innerHTML = `${eventConfig.name} - ${eventConfig.description}`;
+    
+    let descSpan = document.createElement("div");
+    descSpan.className = "eventDescription";
+    descSpan.textContent = effectResult || "";
+    
+    //Add elements to notification
+    notification.appendChild(iconSpan);
+    notification.appendChild(textSpan);
+    notification.appendChild(descSpan);
+    
+    //Append to container
+    if (container) {
+        container.appendChild(notification);
+        
+        //Remove notification after animation completes
+        setTimeout(function() {
+            notification.classList.add("removing");
+            setTimeout(function() {
+                notification.remove();
+            }, 500);
+        }, 3000); //Keep visible for 3 seconds before removing
+    }
+}
+
+//Save event history to localStorage
+function saveEventHistory() {
+    localStorage.setItem("SSeventHistory", JSON.stringify(eventHistory));
+}
+
+//Load event history from localStorage on page load
+window.addEventListener("DOMContentLoaded", function() {
+    var savedHistory = localStorage.getItem("SSeventHistory");
+    if (savedHistory) {
+        eventHistory = JSON.parse(savedHistory);
+    }
+});
 
 //Element content update functions
 function updatePointsDisplay() {
