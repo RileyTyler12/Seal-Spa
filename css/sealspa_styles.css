@@ -285,6 +285,7 @@ main {
 }
 
 #mainButton {
+    position: relative;
     font-size: 3rem;
     background-color: transparent;
     border: none;
