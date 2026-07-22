@@ -136,10 +136,9 @@ hr {
 
 #GridWrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     gap: 1rem;
     padding: 2rem;
-    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -205,6 +204,14 @@ main {
     padding: 2rem;
     margin: 1rem 0;
     transition: all 0.3s ease;
+}
+
+.columnSpan2 {
+    grid-column: span 2;
+}
+
+.columnSpan3 {
+    grid-column: span 3;
 }
 
 .panel:hover {
