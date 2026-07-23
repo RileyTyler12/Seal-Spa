@@ -42,46 +42,13 @@ Website written/designed by: Riley Tyler
             </div>
             </main>
 
-            <div class="panel columnSpan3" id="buttonDiv">
+            <div class="panel" id="buttonDiv">
                 <button id="mainButton" onmouseenter="leftRightAnim(this)" onclick="bounceAnim(this)"><img id="sealButtonImage" src="images/sealart1.jpg"></button>
                 <p id="sealName"></p>
                 <h2 id="points">points</h2>
             </div>
-            <div class="panel columnSpan2" id="shopDiv">
-                <h1>Shop</h1>
-                <p>Buy upgrades here.</p>
-                <hr>
-                <h2>Player Upgrades</h2>
-                <div class="shopContainer">
-                    <div>
-                        <button class="shopButton" id="shopHandlingUpgradeButton" onmouseenter="bounceAnim(this)">Increase Spa Handling Skill | Level 0: +0 buck per click</button>
-                        <p id="shopHandlingUpgradePrice">Cost: 50💲</p>
-                    </div>
-                </div>
-                <hr>
-                <h2>Automations</h2>
-                <div class="shopContainer">
-                    <div>
-                        <button class="shopButton" id="shopAssociateButton" onmouseenter="bounceAnim(this)">Associates 🐧</button>
-                        <p id="shopAssociatePrice">Cost: 100💲</p>
-                    </div>
-                    <div>
-                        <button class="shopButton" id="shopElectroTherapistButton" onmouseenter="bounceAnim(this)">Electro Therapists 🪼</button>
-                        <p id="shopElectroTherapistPrice">Cost: 350💲</p>
-                    </div>
-                    <div>
-                        <button class="shopButton" id="shopEstheticianButton" onmouseenter="bounceAnim(this)">Estheticians 🐙</button>
-                        <p id="shopEstheticianPrice">Cost: 500💲</p>
-                    </div>
-                    <div>
-                        <button class="shopButton" id="shopExpansionButton" onmouseenter="bounceAnim(this)">Additional Expansions 🛖</button>
-                        <p id="shopExpansionPrice">Cost: 1000💲</p>
-                    </div>
-                </div>
-                <hr>
-            </div>
             <!-- Tab Container for Special Customers and Employees -->
-            <div class="tab-container" id="customerTabs">
+            <div class="tab-container panel columnSpan2" id="customerTabs">
                 <div class="tab-switch">
                     <button class="tab-button active" data-tab="specialCustomers">Special Customers</button>
                     <button class="tab-button" data-tab="employees">Employees & Expansions</button>
@@ -115,9 +82,40 @@ Website written/designed by: Riley Tyler
                         </div>
                     </div>
                 </div>
-
             </div>
-            
+            <div class="panel columnSpan3" id="shopDiv">
+                <h1>Shop</h1>
+                <p>Buy upgrades here.</p>
+                <hr>
+                <h2>Player Upgrades</h2>
+                <div class="shopContainer">
+                    <div>
+                        <button class="shopButton" id="shopHandlingUpgradeButton" onmouseenter="bounceAnim(this)">Increase Spa Handling Skill | Level 0: +0 buck per click</button>
+                        <p id="shopHandlingUpgradePrice">Cost: 50💲</p>
+                    </div>
+                </div>
+                <hr>
+                <h2>Automations</h2>
+                <div class="shopContainer">
+                    <div>
+                        <button class="shopButton" id="shopAssociateButton" onmouseenter="bounceAnim(this)">Associates 🐧</button>
+                        <p id="shopAssociatePrice">Cost: 100💲</p>
+                    </div>
+                    <div>
+                        <button class="shopButton" id="shopElectroTherapistButton" onmouseenter="bounceAnim(this)">Electro Therapists 🪼</button>
+                        <p id="shopElectroTherapistPrice">Cost: 350💲</p>
+                    </div>
+                    <div>
+                        <button class="shopButton" id="shopEstheticianButton" onmouseenter="bounceAnim(this)">Estheticians 🐙</button>
+                        <p id="shopEstheticianPrice">Cost: 500💲</p>
+                    </div>
+                    <div>
+                        <button class="shopButton" id="shopExpansionButton" onmouseenter="bounceAnim(this)">Additional Expansions 🛖</button>
+                        <p id="shopExpansionPrice">Cost: 1000💲</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
         </div>
         <footer>
             <p id="version"><p>

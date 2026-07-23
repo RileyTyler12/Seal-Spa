@@ -199,6 +199,7 @@ main {
     ============================================ */
 
 .panel {
+    text-align: center;
     background-color: var(--card-bg);
     border-radius: 16px;
     backdrop-filter: blur(10px);
