@@ -9,9 +9,10 @@ let randomEvents = {
     luckyCustomer: {
         name: "🎁 Lucky Customer",
         description: "A customer leaves a generous tip!",
-        probability: 0.006, //0.6% chance per tick
+        probability: 0.005, //0.5% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.08 + 10);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.06 + stats.associates * 3 + stats.electroTherapists * 2);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -19,9 +20,10 @@ let randomEvents = {
     newTechnique: {
         name: "💆✨ New Technique",
         description: "You discover a new spa technique!",
-        probability: 0.0055, //0.55% chance per tick
+        probability: 0.0045, //0.45% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.07 + 8);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.05 + stats.handling * 15);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -31,7 +33,8 @@ let randomEvents = {
         description: "An associate brings in extra tips!",
         probability: 0.0045, //0.45% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.06 + 15);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.04 + stats.associates * 5 + stats.estheticians * 3);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -41,7 +44,8 @@ let randomEvents = {
         description: "A customer's birthday celebration!",
         probability: 0.0055, //0.55% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.08 + 20);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.07 + stats.expansions * 10);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -51,7 +55,8 @@ let randomEvents = {
         description: "Fresh supplies arrive with bonus payment!",
         probability: 0.008, //0.8% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.1 + 18);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.08 + stats.expansions * 15 + stats.handling);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -61,7 +66,8 @@ let randomEvents = {
         description: "Returning customers bring steady income!",
         probability: 0.009, //0.9% chance per tick (common)
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.04 + 3);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.03 + stats.associates * 2 + stats.electroTherapists * 2);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -69,9 +75,10 @@ let randomEvents = {
     sealTrainingDay: {
         name: "🎓 Seal Training Day",
         description: "Associates improve skills for efficiency!",
-        probability: 0.004, //0.4% chance per tick
+        probability: 0.0035, //0.35% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.07 + 12);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.06 + stats.handling * 10 + stats.electroTherapists * 5);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -79,9 +86,10 @@ let randomEvents = {
     oceanStormWarning: {
         name: "🌊 Ocean Storm Warning",
         description: "Weather affects business operations!",
-        probability: 0.003, //0.3% chance per tick (penalty)
+        probability: 0.006, //0.6% chance per tick (penalty)
         effect: function(player) {
-            let penalty = Math.floor(player.getPoints() * 0.02 - 3);
+            let stats = getPlayerStats();
+            let penalty = Math.floor(stats.points * 0.035 - stats.expansions * 3);
             if (penalty > 0) {
                 player.removePoints(penalty);
                 return `-${penalty}💲`;
@@ -94,7 +102,8 @@ let randomEvents = {
         description: "A calming wave grants bonus points!",
         probability: 0.005, //0.5% chance per tick
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.1 + 25);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.09 + stats.estheticians * 8);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -104,7 +113,8 @@ let randomEvents = {
         description: "Special event! Massive bonus!",
         probability: 0.002, //0.2% chance per tick (rare)
         effect: function(player) {
-            let bonus = Math.floor(player.getPoints() * 0.15 + 80);
+            let stats = getPlayerStats();
+            let bonus = Math.floor(stats.points * 0.13 + stats.expansions * 30 + stats.handling * 20);
             player.addPoints(bonus);
             return `+${bonus}💲`;
         },
@@ -112,9 +122,10 @@ let randomEvents = {
     equipmentBreakdown: {
         name: "⚠️ Equipment Breakdown",
         description: "Something's not working right...",
-        probability: 0.004, //0.4% chance per tick (penalty)
+        probability: 0.007, //0.7% chance per tick (penalty)
         effect: function(player) {
-            let penalty = Math.floor(player.getPoints() * 0.03 - 5);
+            let stats = getPlayerStats();
+            let penalty = Math.floor(stats.points * 0.04 - stats.handling * 12);
             if (penalty > 0) {
                 player.removePoints(penalty);
                 return `-${penalty}💲`;
@@ -238,13 +249,34 @@ class Player {
     addPoints(points) {
         this.points += points;
     }
+    
+    // Getter methods for shop stats (accessing global variables)
+    getAssociates() {
+        return shopAssociates;
+    }
+    
+    getElectroTherapists() {
+        return shopElectroTherapists;
+    }
+    
+    getEstheticians() {
+        return shopEstheticians;
+    }
+    
+    getExpansions() {
+        return shopExpansions;
+    }
+    
+    getHandling() {
+        return shopHandling;
+    }
     removePoints(points) {
         this.points -= points;
     }
 }
 
 //FOR NOW, if version of game is different from localStorage or empty, clear local storage, resetting it and setting the new version. (change if this causes problems with other stuff on the site.)
-let gameVersion = "0.7.5";
+let gameVersion = "0.7.6";
 if (localStorage.getItem('SealSpaVersion') === null || localStorage.getItem('SealSpaVersion') !== gameVersion) {
         localStorage.clear();
         localStorage.setItem("SealSpaVersion", gameVersion);
@@ -358,6 +390,18 @@ shopHandlingUpgradeButton.addEventListener("click", function() {
 
 //Random Events System Variables
 let eventHistory = []; //track recent events for display
+
+//Helper function to get all player stats for random events
+function getPlayerStats() {
+    return {
+        points: player.getPoints(),
+        associates: shopAssociates,
+        electroTherapists: shopElectroTherapists,
+        estheticians: shopEstheticians,
+        expansions: shopExpansions,
+        handling: shopHandling
+    };
+}
 
 //Create and setup seal character shop options/variables
 let sealOptions = ["Baby Ronan", "Miss Bella", "Brutus Sealman", "Ponsuke"];
