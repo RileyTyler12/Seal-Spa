@@ -205,6 +205,7 @@ main {
     -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     margin: 1rem 0;
+    max-height: fit-content;
     transition: all 0.3s ease;
 }
 
@@ -221,13 +222,22 @@ main {
     transition: all 0.3s ease;
 }
 
+.tab-switch {
+    justify-self: center;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
 .tab-button {
     padding: 0.75rem 1.5rem;
+    margin: 0.2rem;
     font-family: "DynaPuff", system-ui;
     font-size: 1rem;
     background-color: var(--button-bg);
     border: 2px solid var(--glass-border);
-    border-radius: 12px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -344,6 +354,9 @@ main {
    ============================================ */
 
 #buttonDiv {
+    max-width: fit-content;
+    justify-self: center;
+    padding: 2rem;
     text-align: center;
 }
 
@@ -354,7 +367,7 @@ main {
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    max-width: 512px;
+    max-width: 25rem;
     margin: auto;
     -webkit-tap-highlight-color: transparent;
 }
@@ -367,6 +380,7 @@ main {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    filter: drop-shadow(4px 4px 16px);
     transition: all 0.3s ease;
 }
 
@@ -421,6 +435,7 @@ p {
     align-items: center;
     padding: 1rem;
     margin: 0.5rem;
+    max-width: 12rem;
     background-color: var(--button-bg);
     border: 2px solid var(--glass-border);
     border-radius: 12px;

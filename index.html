@@ -82,8 +82,11 @@ Website written/designed by: Riley Tyler
             </div>
             <!-- Tab Container for Special Customers and Employees -->
             <div class="tab-container" id="customerTabs">
-                <button class="tab-button active" data-tab="specialCustomers">Special Customers</button>
-                <button class="tab-button" data-tab="employees">Employees & Expansions</button>
+                <div class="tab-switch">
+                    <button class="tab-button active" data-tab="specialCustomers">Special Customers</button>
+                    <button class="tab-button" data-tab="employees">Employees & Expansions</button>
+                    <button class="tab-button" data-tab="settings">Settings</button>
+                </div>
                 
                 <!-- Special Customers Tab Content -->
                 <div class="tab-content active" id="specialCustomersTab">
@@ -102,10 +105,17 @@ Website written/designed by: Riley Tyler
                         <p id="inventory">inventory</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="theme-toggle-container">
-                <button id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">🌊 Ocean</button>
+                <!-- Settings Tab Content -->
+                <div class="tab-content" id="settingsTab">
+                    <div class="panel columnSpan3">
+                        <h1>Theme</h1>
+                        <div class="theme-toggle-container">
+                            <button id="themeToggleBtn" onclick="toggleTheme()" title="Switch Theme">🌊 Ocean</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             
         </div>
